@@ -2,6 +2,7 @@ const admin = require('firebase-admin');
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
+const crypto = require('crypto');
 
 app.use(express.json());
 
@@ -116,7 +117,7 @@ app.post('/createUser', async (req, res) => {
           const userDoc = {
             uid: userRecord.uid,
             email: userRecord.email,
-            password:req.body.password, 
+            password : require('crypto').createHash('md5').update(req.body.password).digest('hex'),
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             role: 'admin',
