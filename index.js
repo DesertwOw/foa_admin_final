@@ -102,6 +102,7 @@ app.post('/createUser', async (req, res) => {
       if (role === 'admin') {
         const newUser = {
           email: req.body.email,
+          password: req.body.password,
           emailVerified: false,
           displayName: req.body.firstname + ' ' + req.body.lastname,
           disabled: false,
@@ -115,6 +116,7 @@ app.post('/createUser', async (req, res) => {
           const userDoc = {
             uid: userRecord.uid,
             email: userRecord.email,
+            password:req.body.password, 
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             role: 'admin',
